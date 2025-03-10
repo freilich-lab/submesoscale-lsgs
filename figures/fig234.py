@@ -195,7 +195,7 @@ def plot_best_fit(lambda_values, agg_data, ratio, xlabel, title, dist_path, dist
             plt.ylim([-8, 8])
 
     plt.xlabel(xlabel, fontsize=32)
-    plt.ylabel('Average Flux, $\mu$mol m$^{-3}$', fontsize=32)
+    plt.ylabel('$\mu$mol m$^{-2}$ day$^{-1}$', fontsize=32)
     ax.tick_params(axis='x', labelsize=24)
     ax.tick_params(axis='y', labelsize=24)
 
@@ -228,7 +228,7 @@ def plot_flux_vs_lambda(aggregated_data, ratio_u, ratio_v, dist_path):
     ax1.tick_params(axis='x', labelsize=24)
     ax1.tick_params(axis='y', labelsize=24)
     ax1.set_xlabel('Uptake Rate, day$^{-1}$', fontsize=32)
-    ax1.set_ylabel('Average Flux, $\mu$mol m$^{-3}$', fontsize=32)
+    ax1.set_ylabel('$\mu$mol m$^{-2}$ day$^{-1}$', fontsize=32)
 
     # Plotting for the second subplot (ax2) using ratio_v 
     for i, ratio in enumerate(ratio_v):
@@ -244,7 +244,7 @@ def plot_flux_vs_lambda(aggregated_data, ratio_u, ratio_v, dist_path):
     ax2.tick_params(axis='y', labelsize=24)
     ax2.set_xscale('log')
     ax2.set_xlabel('Uptake Rate, day$^{-1}$', fontsize=32)
-    ax2.set_ylabel('Average Flux, $\mu$mol m$^{-3}$', fontsize=32)
+    ax2.set_ylabel('$\mu$mol m$^{-2}$ day$^{-1}$', fontsize=32)
 
     title = 'Average Flux vs. Uptake Rate'
     plt.savefig(dist_path+title + '.png')
@@ -327,8 +327,8 @@ def main():
         for lambda_val, flux in aggregated_data.items():
             drifter_flux = drifter_data[lambda_val]
             adv_flux = adv_data[lambda_val]
-            plot_ratios_vs_field(ratio_u, ratio_v, flux, drifter_flux, ratio_drifter_u, adv_flux, ratio_adv_u, r'Zonal Disp. Param. $\sigma^u\sqrt{\tau^u}$', '$\\mu$mol m$^{-3}$', r'Avg. Flux vs. $\sigma^u\sqrt{\tau^u}$, $\lambda=$'+str(lambda_val), dist_path, r'Merid. Disp. Param. $\sigma^v\sqrt{\tau^v}$', args.varying, args.mode)
-            plot_ratios_vs_field(ratio_v, ratio_u, flux, drifter_flux, ratio_drifter_v, adv_flux, ratio_adv_v, r'Merid. Disp. Param. $\sigma^v\sqrt{\tau^v}$', '$\\mu$mol m$^{-3}$', r'Avg. Flux vs. $\sigma^v\sqrt{\tau^v}$, $\lambda=$'+str(lambda_val), dist_path, r'Zonal Disp. Param. $\sigma^u\sqrt{\tau^u}$', args.varying, args.mode)
+            plot_ratios_vs_field(ratio_u, ratio_v, flux, drifter_flux, ratio_drifter_u, adv_flux, ratio_adv_u, r'Zonal Disp. Param. $\sigma^u\sqrt{\tau^u}$', '$\\mu$mol m$^{-2}$ day$^{-1}$', r'Avg. Flux vs. $\sigma^u\sqrt{\tau^u}$, $\lambda=$'+str(lambda_val), dist_path, r'Merid. Disp. Param. $\sigma^v\sqrt{\tau^v}$', args.varying, args.mode)
+            plot_ratios_vs_field(ratio_v, ratio_u, flux, drifter_flux, ratio_drifter_v, adv_flux, ratio_adv_v, r'Merid. Disp. Param. $\sigma^v\sqrt{\tau^v}$', '$\\mu$mol m$^{-2}$ day$^{-1}$', r'Avg. Flux vs. $\sigma^v\sqrt{\tau^v}$, $\lambda=$'+str(lambda_val), dist_path, r'Zonal Disp. Param. $\sigma^u\sqrt{\tau^u}$', args.varying, args.mode)
     if args.figure=='figure4':
         plot_flux_vs_lambda(aggregated_data, ratio_u, ratio_v, dist_path)
 
